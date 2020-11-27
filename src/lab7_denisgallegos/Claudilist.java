@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class Claudilist {
     
+    private String nombre; 
     private File archivo; 
     private ArrayList <Programas> programas = new ArrayList();
 
@@ -33,7 +34,19 @@ public class Claudilist {
         this.programas = programas;
     }
     
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
     //MA: 
+    public String toStringClaudilist(){
+        return "Nombre: "+nombre;
+    }
+
     
     
     

@@ -10,12 +10,30 @@ import javax.swing.JOptionPane;
 public class Principal extends javax.swing.JFrame {
 
     ArrayList programas = new ArrayList();
+    ArrayList listasclau = new ArrayList();
     
     public Principal() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
 
+    public DefaultListModel llenarmodeloprogramas(){
+        DefaultListModel modelo = new DefaultListModel();
+        for (int c = 0 ; c < programas.size();c++){
+            Programas objeto = (Programas) programas.get(c);
+            modelo.addElement(objeto.toStringProgramas());
+        }
+        return modelo; 
+    }
+    
+    public DefaultListModel llenarmodeloclaudilist(){
+        DefaultListModel modelo = new DefaultListModel();
+        for (int c = 0 ; c < listasclau.size();c++){
+            Claudilist objeto = (Claudilist) listasclau.get(c);
+            modelo.addElement(objeto.toStringClaudilist());
+        }
+        return modelo; 
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -39,6 +57,17 @@ public class Principal extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<>();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,6 +128,53 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Agregar Claudilist");
+
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Nombre: ");
+
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Lista de Claudilist: ");
+
+        jList2.setModel(new DefaultListModel());
+        jScrollPane2.setViewportView(jList2);
+
+        jButton5.setText("Agregar Claudilist");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("Eliminar Claudilist");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText("Modificar Claudilist");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jButton8.setText("Mostrar Claudilist");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        jButton9.setText("Asignar programa a Claudilist");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -137,7 +213,28 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jButton8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -172,7 +269,29 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
-                .addContainerGap(276, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton6)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton7)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton8))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton9)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Menu agregar", jPanel1);
@@ -255,7 +374,6 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if (jList1.getSelectedIndex() >= 0){
-            DefaultListModel modelo = (DefaultListModel) jList1.getModel();
             for (int c = 0; c < programas.size();c++){
                 Programas objeto = (Programas) programas.get(c);
                 if (objeto.toStringProgramas().equals(jList1.getSelectedValue())){
@@ -269,6 +387,122 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Seleccione un programa.");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if(jList1.getSelectedIndex() >= 0){
+            String nombre = jTextField2.getText()+"";
+            Claudilist listaclau = new Claudilist(nombre);
+            listaclau.setNombre(nombre);
+            for (int c = 0; c < programas.size();c++){
+                Programas objeto = (Programas) programas.get(c);
+                if (objeto.toStringProgramas().equals(jList1.getSelectedValue())){
+                    listaclau.getProgramas().add(objeto);
+                }
+            }
+            listasclau.add(listaclau);
+            DefaultListModel modelo = (DefaultListModel) jList2.getModel();
+            modelo.addElement(listaclau.toStringClaudilist());
+            jList2.setModel(modelo);
+            jTextField2.setText("");
+        }else {
+            JOptionPane.showMessageDialog(null, "Seleccione al menos un programa.");
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        if (jList2.getSelectedIndex() >= 0){
+            for (int c = 0 ; c < listasclau.size();c++){
+                Claudilist objeto = (Claudilist) listasclau.get(c);
+                if (objeto.toStringClaudilist().equals(jList2.getSelectedValue())){
+                    ArrayList lista = new ArrayList();
+                    lista = objeto.getProgramas();
+                    ArrayList lista2 = new ArrayList();
+                    lista2 = lista;
+                    ArrayList lista3 = new ArrayList();
+                    lista3 = programas;
+                    for (int j = 0; j < programas.size();j++){
+                        Programas objeto2 = (Programas) programas.get(j);
+                        for(int h = 0; h < lista.size();h++){
+                            Programas objeto3 = (Programas) lista.get(h);
+                            if(objeto2.equals(objeto3)){
+                                lista2.remove(objeto3);
+                                lista3.remove(objeto2);
+                            }
+                        }                     
+                    }
+                    objeto.setProgramas(lista2); 
+                    programas = lista3;
+                    listasclau.remove(objeto);
+                    DefaultListModel modelo1 = llenarmodeloprogramas();
+                    jList1.setModel(modelo1);
+                    modelo1 = llenarmodeloclaudilist(); 
+                    jList2.setModel(modelo1);
+                }
+            }
+        }else {
+            JOptionPane.showMessageDialog(null, "Seleccione una claudilist.");
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        if (jList2.getSelectedIndex() >= 0){
+            for (int c = 0 ; c < listasclau.size();c++){
+                Claudilist objeto = (Claudilist) listasclau.get(c);
+                if (objeto.toStringClaudilist().equals(jList2.getSelectedValue())){
+                    String nombre = jTextField2.getText();
+                    objeto.setNombre(nombre);
+                    DefaultListModel modelo = (DefaultListModel) jList2.getModel();
+                    modelo = llenarmodeloclaudilist();
+                    jList2.setModel(modelo);
+                }
+            }
+        }else {
+            JOptionPane.showMessageDialog(null, "Seleccione una claudilist.");
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        if (jList2.getSelectedIndex() >= 0){
+            for (int c = 0 ; c < listasclau.size();c++){
+                Claudilist objeto = (Claudilist) listasclau.get(c);
+                if (objeto.toStringClaudilist().equals(jList2.getSelectedValue())){
+                    jTextField2.setText(objeto.getNombre());
+                }
+            }
+        }else {
+            JOptionPane.showMessageDialog(null, "Seleccione una claudilist.");
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        if (jList1.getSelectedIndex() >= 0){
+            if (jList2.getSelectedIndex() >= 0){
+                ArrayList lista = new ArrayList(); 
+                for (int j = 0 ; j < listasclau.size();j++){
+                    Claudilist objeto2 = (Claudilist) listasclau.get(j);
+                    if (objeto2.toStringClaudilist().equals(jList2.getSelectedValue())){
+                        for (int c = 0; c < programas.size();c++){
+                            Programas objeto = (Programas) programas.get(c);
+                            if (objeto.toStringProgramas().equals(jList1.getSelectedValue())){
+                                lista = objeto2.getProgramas(); 
+                                lista.add(objeto);
+                                JOptionPane.showMessageDialog(null, "Programa agregado correctamente.");
+                            }
+                        }
+                        objeto2.setProgramas(lista);
+                    }
+                    for (int h = 0; h < objeto2.getProgramas().size();h++){
+                        Programas objeto3 = (Programas) objeto2.getProgramas().get(h);
+                        System.out.println(objeto3.toStringProgramas());
+                    }
+                }                
+            }else {
+                JOptionPane.showMessageDialog(null, "Seleccione una claudilist.");
+            }
+        }else {
+            JOptionPane.showMessageDialog(null, "Seleccione un programa.");
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     
     public static void main(String args[]) {
@@ -308,6 +542,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -316,11 +555,17 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
