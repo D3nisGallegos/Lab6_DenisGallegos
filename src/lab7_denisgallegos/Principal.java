@@ -2,7 +2,13 @@
  */
 package lab7_denisgallegos;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -68,6 +74,8 @@ public class Principal extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        panel1 = new java.awt.Panel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -175,6 +183,13 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jButton10.setText("Archivar Claudilist");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -233,7 +248,8 @@ public class Principal extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
-                                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
@@ -290,11 +306,28 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton9)))
+                        .addComponent(jButton9)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton10)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Menu agregar", jPanel1);
+
+        panel1.setBackground(new java.awt.Color(102, 255, 102));
+
+        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
+        panel1.setLayout(panel1Layout);
+        panel1Layout.setHorizontalGroup(
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 698, Short.MAX_VALUE)
+        );
+        panel1Layout.setVerticalGroup(
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 524, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Crud archivos", panel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -490,11 +523,7 @@ public class Principal extends javax.swing.JFrame {
                             }
                         }
                         objeto2.setProgramas(lista);
-                    }
-                    for (int h = 0; h < objeto2.getProgramas().size();h++){
-                        Programas objeto3 = (Programas) objeto2.getProgramas().get(h);
-                        System.out.println(objeto3.toStringProgramas());
-                    }
+                    }                  
                 }                
             }else {
                 JOptionPane.showMessageDialog(null, "Seleccione una claudilist.");
@@ -503,6 +532,43 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Seleccione un programa.");
         }
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        if (jList2.getSelectedIndex() >= 0){
+            for (int c = 0 ; c < listasclau.size();c++){
+                Claudilist objeto = (Claudilist) listasclau.get(c);
+                if (objeto.toStringClaudilist().equals(jList2.getSelectedValue())){
+                    File archivo = null; 
+                    FileWriter escritor= null;
+                    BufferedWriter escritorenRAM = null;       
+                    try{
+                        archivo = new File("./"+objeto.getNombre()+".txt");
+                        escritor = new FileWriter(archivo, false);
+                        escritorenRAM = new BufferedWriter(escritor);
+                        String linea = ""; 
+                        for (int j = 0; j < objeto.getProgramas().size();j++){
+                            Programas programa = (Programas) objeto.getProgramas().get(j);
+                            linea = programa.getNombre()+"/"+programa.getPuntuacion()+"/"+programa.getTipo()+"/"+programa.getGenero();
+                            escritorenRAM.write(linea);
+                            escritorenRAM.newLine();  
+                        }                                                     
+                        escritorenRAM.flush();
+
+                    }catch (Exception e){
+
+                    }
+                    try {
+                        escritorenRAM.close();
+                        escritor.close();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }                   
+                }
+            }
+        }else {
+            JOptionPane.showMessageDialog(null, "Seleccione una claudilist.");
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     
     public static void main(String args[]) {
@@ -539,6 +605,7 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -567,5 +634,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private java.awt.Panel panel1;
     // End of variables declaration//GEN-END:variables
 }
