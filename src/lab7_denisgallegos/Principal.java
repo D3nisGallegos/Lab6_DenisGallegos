@@ -4,6 +4,7 @@ package lab7_denisgallegos;
 
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 
 public class Principal extends javax.swing.JFrame {
@@ -37,6 +38,7 @@ public class Principal extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,15 +79,32 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         jButton2.setText("Eliminar programa");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Modificar programa");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Mostrar programa");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -109,15 +128,17 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(67, 67, 67)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton1)
                         .addGap(29, 29, 29)
                         .addComponent(jButton2)
                         .addGap(28, 28, 28)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(95, Short.MAX_VALUE))
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,7 +170,8 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
                 .addContainerGap(276, Short.MAX_VALUE))
         );
 
@@ -174,12 +196,79 @@ public class Principal extends javax.swing.JFrame {
         int puntuacion = Integer.parseInt(jSpinner1.getValue()+"");
         String tipo = jComboBox1.getSelectedItem()+""; 
         String genero = jComboBox2.getSelectedItem()+"";
-        Programas programa = new Programas(nombre, puntuacion, tipo, genero);
-        programas.add(programa);
-        DefaultListModel modelo = (DefaultListModel) jList1.getModel();
-        modelo.addElement(programa.toStringProgramas());
-        jList1.setModel(modelo);
+        String nada = "";
+        if ((nombre.equals(nada)) == false){
+            Programas programa = new Programas(nombre, puntuacion, tipo, genero);
+            programas.add(programa);
+            DefaultListModel modelo = (DefaultListModel) jList1.getModel();
+            modelo.addElement(programa.toStringProgramas());
+            jList1.setModel(modelo);
+            jTextField1.setText("");
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese un nombre.");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (jList1.getSelectedIndex() >= 0){
+            DefaultListModel modelo = (DefaultListModel) jList1.getModel();
+            modelo.removeElementAt(jList1.getSelectedIndex());
+            for (int c = 0; c < programas.size();c++){
+                Programas objeto = (Programas) programas.get(c);
+                if (objeto.toStringProgramas().equals(jList1.getSelectedValue())){
+                    programas.remove(objeto);
+                }
+            }
+            jList1.setModel(modelo);
+        }else {
+            JOptionPane.showMessageDialog(null, "Seleccione un programa.");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if (jList1.getSelectedIndex() >= 0){
+            DefaultListModel modelo = (DefaultListModel) jList1.getModel();
+            for (int c = 0; c < programas.size();c++){
+                Programas objeto = (Programas) programas.get(c);
+                if (objeto.toStringProgramas().equals(jList1.getSelectedValue())){
+                    String nombre = jTextField1.getText();
+                    int puntuacion = Integer.parseInt(jSpinner1.getValue()+"");
+                    String tipo = jComboBox1.getSelectedItem()+""; 
+                    String genero = jComboBox2.getSelectedItem()+"";
+                    String nada = "";
+                    if ((nombre.equals(nada)) == false){
+                        Programas programa = new Programas(nombre, puntuacion, tipo, genero);
+                        int indice = programas.indexOf(objeto);
+                        programas.set(indice, programa);
+                        modelo.setElementAt(programa.toStringProgramas(), jList1.getSelectedIndex());
+                        jList1.setModel(modelo);
+                        jTextField1.setText(""); 
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Ingrese un nombre.");
+                    }
+                }
+            }
+        }else {
+            JOptionPane.showMessageDialog(null, "Seleccione un programa.");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if (jList1.getSelectedIndex() >= 0){
+            DefaultListModel modelo = (DefaultListModel) jList1.getModel();
+            for (int c = 0; c < programas.size();c++){
+                Programas objeto = (Programas) programas.get(c);
+                if (objeto.toStringProgramas().equals(jList1.getSelectedValue())){
+                    jTextField1.setText(objeto.getNombre());
+                    jSpinner1.setValue(objeto.getPuntuacion());
+                    jComboBox1.setSelectedItem(objeto.getTipo());
+                    jComboBox2.setSelectedItem(objeto.getGenero());
+                }
+            }
+        }else {
+            JOptionPane.showMessageDialog(null, "Seleccione un programa.");
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     
     public static void main(String args[]) {
@@ -218,6 +307,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
