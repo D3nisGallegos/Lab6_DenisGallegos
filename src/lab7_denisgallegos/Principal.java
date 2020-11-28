@@ -79,11 +79,13 @@ public class Principal extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
         panel1 = new java.awt.Panel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jButton12 = new javax.swing.JButton();
+        jButton13 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -198,13 +200,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jButton11.setText("Listar archivo");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -264,10 +259,7 @@ public class Principal extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
                                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
@@ -326,9 +318,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton9)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton10)
-                            .addComponent(jButton11))))
+                        .addComponent(jButton10)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -343,6 +333,27 @@ public class Principal extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane3.setViewportView(jTextArea1);
 
+        jButton12.setText("Eliminar Archivo");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+
+        jButton13.setText("Mostrar archivo");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
+        jButton11.setText("Cargar al sistema");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
@@ -350,9 +361,15 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(panel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jLabel10))
-                .addContainerGap(308, Short.MAX_VALUE))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -360,7 +377,14 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addComponent(jButton13)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton12)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton11)))
                 .addContainerGap(340, Short.MAX_VALUE))
         );
 
@@ -370,7 +394,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -594,6 +618,7 @@ public class Principal extends javax.swing.JFrame {
                     }catch (Exception e){
 
                     }
+                    objeto.setArchivo(archivo);
                     try {
                         escritorenRAM.close();
                         escritor.close();
@@ -608,32 +633,106 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton10ActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         File archivo = null;
         Scanner lectura= null;
-        for (int c = 0 ; c < listasclau.size();c++){
-            Claudilist objeto = (Claudilist) listasclau.get(c);
-            if (objeto.toStringClaudilist().equals(jList2.getSelectedValue())){
-                JFileChooser chooserabrir = new JFileChooser("./");
-                FileNameExtensionFilter filtro = new FileNameExtensionFilter("Filtro para archivos txt", "txt");               
-                chooserabrir.addChoosableFileFilter(filtro);
-                int valor = chooserabrir.showOpenDialog(this);
-                if (valor == chooserabrir.APPROVE_OPTION){         
-                    archivo = chooserabrir.getSelectedFile();
-                    try {
-                        lectura = new Scanner(archivo);
-                        while (lectura.hasNext()){
-                            String linea = lectura.nextLine();
-                            jTextArea1.append(linea+"\n");
-                        }
-                    } catch (FileNotFoundException ex) {
-                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-                    }                   
+        JFileChooser chooserabrir = new JFileChooser("./");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Filtro para archivos txt", "txt");               
+        chooserabrir.addChoosableFileFilter(filtro);
+        int valor = chooserabrir.showOpenDialog(this);
+        if (valor == chooserabrir.APPROVE_OPTION){         
+            archivo = chooserabrir.getSelectedFile();
+            try {
+                lectura = new Scanner(archivo);
+                jTextArea1.setText("");
+                while (lectura.hasNext()){
+                    String linea = lectura.nextLine();
+                    jTextArea1.append(linea+"\n");
+                    
+                }                     
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }                   
+        }        
+        lectura.close();
+        archivo.delete();
+        JOptionPane.showMessageDialog(null, "El archivo que se muestra fue eliminado correctamente.");
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        File archivo = null;
+        Scanner lectura= null;      
+        JFileChooser chooserabrir = new JFileChooser("./");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Filtro para archivos txt", "txt");               
+        chooserabrir.addChoosableFileFilter(filtro);
+        int valor = chooserabrir.showOpenDialog(this);
+        if (valor == chooserabrir.APPROVE_OPTION){         
+            archivo = chooserabrir.getSelectedFile();
+            try {
+                jTextArea1.setText("");
+                lectura = new Scanner(archivo);
+                while (lectura.hasNext()){
+                    String linea = lectura.nextLine();
+                    jTextArea1.append(linea+"\n");
                 }
-                lectura.close();
-            }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }                   
         }
+        lectura.close();                  
         
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        JFileChooser chooserabrir = new JFileChooser("./");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Filtro para archivos txt", "txt");               
+        chooserabrir.addChoosableFileFilter(filtro);
+        int valor = chooserabrir.showOpenDialog(this);
+        File archivo = null;
+        Scanner lectura= null;  
+        if (valor == chooserabrir.APPROVE_OPTION){         
+            archivo = chooserabrir.getSelectedFile();
+            jTextArea1.setText("");
+            try {
+                lectura = new Scanner(archivo);
+                while (lectura.hasNext()){
+                    String linea = lectura.nextLine();
+                    jTextArea1.append(linea+"\n");
+                }
+                String token = "";
+                for (int c = 0; c < archivo.getName().length();c++){
+                    char caracter = archivo.getName().charAt(c);
+                    String n = caracter +"";
+                    if (n.equals(".")){
+                        break;
+                    }else {
+                        token += caracter; 
+                    }
+                }
+                System.out.println(token);
+                Claudilist lista = new Claudilist("./"+archivo.getName()); 
+                lista.setNombre(token);
+                lectura = new Scanner(archivo);
+                while (lectura.hasNext()){
+                    String [] linea = lectura.nextLine().split("/");
+                    Programas progra = new Programas(linea [0], Integer.parseInt(linea [1]+""), linea[2], linea[3]);
+                    lista.getProgramas().add(progra);
+                    programas.add(progra);
+                }
+                listasclau.add(lista);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }                   
+        }
+        lectura.close(); 
+        DefaultListModel modelo = (DefaultListModel) jList1.getModel();
+        modelo = llenarmodeloprogramas();
+        jList1.setModel(modelo);
+        modelo = llenarmodeloclaudilist();
+        jList2.setModel(modelo);
+        JOptionPane.showMessageDialog(null, "El archivo se cargo correctamente.");
     }//GEN-LAST:event_jButton11ActionPerformed
 
     
@@ -673,6 +772,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
