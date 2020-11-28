@@ -79,6 +79,7 @@ public class Principal extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
         panel1 = new java.awt.Panel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -200,6 +201,13 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jButton14.setText("Archivar cambios");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -259,7 +267,10 @@ public class Principal extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
                                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(41, 41, 41)
+                                        .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
@@ -318,11 +329,13 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton9)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton10)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton10)
+                            .addComponent(jButton14))))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Menu agregar", jPanel1);
+        jTabbedPane1.addTab("Crud sistema", jPanel1);
 
         panel1.setBackground(new java.awt.Color(102, 255, 102));
 
@@ -394,7 +407,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -452,6 +465,15 @@ public class Principal extends javax.swing.JFrame {
                     if ((nombre.equals(nada)) == false){
                         Programas programa = new Programas(nombre, puntuacion, tipo, genero);
                         int indice = programas.indexOf(objeto);
+                        for (int h = 0; h < listasclau.size();h++){
+                            Claudilist lista = (Claudilist) listasclau.get(h);
+                            for (int n = 0; n < lista.getProgramas().size();n++){
+                                Programas progra = (Programas) lista.getProgramas().get(n);
+                                if (progra.equals(programas.get(indice))){
+                                    lista.getProgramas().set(n, programa);
+                                }
+                            }
+                        }                     
                         programas.set(indice, programa);
                         modelo.setElementAt(programa.toStringProgramas(), jList1.getSelectedIndex());
                         jList1.setModel(modelo);
@@ -709,7 +731,6 @@ public class Principal extends javax.swing.JFrame {
                         token += caracter; 
                     }
                 }
-                System.out.println(token);
                 Claudilist lista = new Claudilist("./"+archivo.getName()); 
                 lista.setNombre(token);
                 lectura = new Scanner(archivo);
@@ -734,6 +755,48 @@ public class Principal extends javax.swing.JFrame {
         jList2.setModel(modelo);
         JOptionPane.showMessageDialog(null, "El archivo se cargo correctamente.");
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        if (jList2.getSelectedIndex() >= 0){            
+            File archivo = null;
+            for (int c = 0 ; c < listasclau.size();c++){
+                Claudilist objeto = (Claudilist) listasclau.get(c);
+                if (objeto.toStringClaudilist().equals(jList2.getSelectedValue())){                     
+                    FileWriter escritor= null;
+                    BufferedWriter escritorenRAM = null;       
+                    try{
+                        archivo = new File("./"+objeto.getNombre()+".txt");
+                        if (archivo.exists()){
+                            escritor = new FileWriter(archivo, false);
+                            escritorenRAM = new BufferedWriter(escritor);
+                            String linea = ""; 
+                            for (int j = 0; j < objeto.getProgramas().size();j++){
+                                Programas programa = (Programas) objeto.getProgramas().get(j);
+                                linea = programa.getNombre()+"/"+programa.getPuntuacion()+"/"+programa.getTipo()+"/"+programa.getGenero();
+                                escritorenRAM.write(linea);
+                                escritorenRAM.newLine();  
+                            }                                                     
+                            escritorenRAM.flush();
+                            JOptionPane.showMessageDialog(null, "Cambios archivados correctamente.");
+                        }else {
+                            JOptionPane.showMessageDialog(null, "El archivo aun no existe.");
+                        }
+                    }catch (Exception e){
+
+                    }
+                    objeto.setArchivo(archivo);
+                    try {
+                        escritorenRAM.close();
+                        escritor.close();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }                    
+                }
+            }
+        }else {
+            JOptionPane.showMessageDialog(null, "Seleccione una claudilist.");
+        }
+    }//GEN-LAST:event_jButton14ActionPerformed
 
     
     public static void main(String args[]) {
@@ -774,6 +837,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
